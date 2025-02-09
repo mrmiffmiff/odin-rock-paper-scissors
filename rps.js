@@ -26,8 +26,8 @@ function getComputerChoice() {
 
 /*
 *   getHumanChoice will prompt the human player for their choice and will return it if it's valid
-*   Inputs: 
-*   Outputs: 
+*   Inputs: None
+*   Output: Human's choice of rock, paper, or scissors
 */
 function getHumanChoice() {
     let choice = "";
@@ -43,3 +43,23 @@ function getHumanChoice() {
 let humanScore = 0;
 let computerScore = 0;
 
+/*
+*   playRound simulates a single round of rock, paper, scissors, incrementing the score as proper
+*   Inputs: humanChoice, ComputerChoice
+*   Output: None
+*/
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) { // tie
+        console.log("You tied!")
+    }
+    else if ((humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")) { // human win
+        humanScore++;
+        console.log("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + ".");
+    }
+    else { // computer win
+        computerScore++;
+        console.log("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".");
+    }
+}
