@@ -24,4 +24,19 @@ function getComputerChoice() {
     }
 }
 
-console.log("Hello World")
+/*
+*   getHumanChoice will prompt the human player for their choice and will return it if it's valid
+*   Inputs: 
+*   Outputs: 
+*/
+function getHumanChoice() {
+    let choice = "";
+    do {
+        choice = prompt("Rock, paper, or scissors").toLowerCase();
+        if (choice != "rock" && choice != "paper" && choice != "scissors") {
+            alert("Please enter a valid response");
+        }
+    } while (choice != "rock" && choice != "paper" && choice != "scissors");
+    return choice;
+}
+
