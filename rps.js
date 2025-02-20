@@ -28,7 +28,7 @@ function getComputerChoice() {
 }
 
 const gameButtons = document.querySelectorAll(".gameButton");
-
+// Will call a round using the button clicked as the human's choice
 gameButtons.forEach((gameButton) => {
     gameButton.addEventListener("click", () => {
         playRound(gameButton.id, getComputerChoice());
@@ -67,6 +67,28 @@ const cScoreDisplay = document.querySelector("#cScore");
 function updateScoreDisplay() {
     hScoreDisplay.textContent = `Human: ${humanScore}`;
     cScoreDisplay.textContent = `Computer: ${computerScore}`;
+    if (humanScore >= 5 || computerScore >= 5) announceWinner();
 }
 
+function announceWinner() {
+    const finalResult = document.createElement("p");
+    if (humanScore >= 5) {
+        finalResult.textContent = "Congratulations, you won Rock, Paper, Scissors!";
+    }
+    else if (computerScore >= 5) {
+        finalResult.textContent = "Too bad! You lost Rock, Paper, Scissors!";
+    }
+    else {
+        finalResult.textContent = "There's absolutely no way this text should be displaying and if it is that's weird.";
+    }
+    resultArea.appendChild(finalResult);
+    const resetMessage = document.createElement("p");
+    resetMessage.textContent = "Resetting scores...";
+    resultArea.appendChild(resetMessage);
+    humanScore = 0;
+    computerScore = 0;
+    updateScoreDisplay();
+}
+
+// Initialize the score display
 updateScoreDisplay();
