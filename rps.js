@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 /* 
 * Returns a random integer between 0 (inclusive) and the input number (exclusive)
 * Inputs: max: Upper bound of return; default of 1 (so result 0 always)
@@ -29,61 +32,68 @@ function getComputerChoice() {
 *   Inputs: None
 *   Output: Human's choice of rock, paper, or scissors
 */
-function getHumanChoice() {
-    let choice = "";
-    do {
-        choice = prompt("Rock, paper, or scissors").toLowerCase();
-        if (choice != "rock" && choice != "paper" && choice != "scissors") {
-            alert("Please enter a valid response");
-        }
-    } while (choice != "rock" && choice != "paper" && choice != "scissors");
-    return choice;
-}
+// function getHumanChoice() {
+//     let choice = "";
+//     do {
+//         choice = prompt("Rock, paper, or scissors").toLowerCase();
+//         if (choice != "rock" && choice != "paper" && choice != "scissors") {
+//             alert("Please enter a valid response");
+//         }
+//     } while (choice != "rock" && choice != "paper" && choice != "scissors");
+//     return choice;
+// }
+
+const gameButtons = document.querySelectorAll(".gameButton");
+
+gameButtons.forEach((gameButton) => {
+    gameButton.addEventListener("click", () => {
+        playRound(gameButton.id, getComputerChoice());
+    });
+});
 
 // Main function, essentially; will simulate 5 rounds of Rock, Paper, Scissors
-function playGame() {
+//function playGame() {
 
-    let humanScore = 0;
-    let computerScore = 0;
 
-    /*
-    *   playRound simulates a single round of rock, paper, scissors, incrementing the score as proper
-    *   Inputs: humanChoice, ComputerChoice
-    *   Output: None
-    */
-    function playRound(humanChoice, computerChoice) {
-        if (humanChoice === computerChoice) { // tie
-            console.log("You tied!")
-        }
-        else if ((humanChoice === "rock" && computerChoice === "scissors") ||
-            (humanChoice === "paper" && computerChoice === "rock") ||
-            (humanChoice === "scissors" && computerChoice === "paper")) { // human win
-            humanScore++;
-            console.log("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + ".");
-        }
-        else { // computer win
-            computerScore++;
-            console.log("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".");
-        }
+
+/*
+*   playRound simulates a single round of rock, paper, scissors, incrementing the score as proper
+*   Inputs: humanChoice, ComputerChoice
+*   Output: None
+*/
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) { // tie
+        console.log("You tied!")
     }
-
-    for (let i = 0; i < 5; i++) {
-        let humanSelection = getHumanChoice();
-        let computerSelection = getComputerChoice();
-
-        playRound(humanSelection, computerSelection);
+    else if ((humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")) { // human win
+        humanScore++;
+        console.log("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + ".");
     }
-
-    if (humanScore > computerScore) {
-        console.log("Congratulations, you won Rock, Paper, Scissors!");
+    else { // computer win
+        computerScore++;
+        console.log("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".");
     }
-    else if (humanScore === computerScore) {
-        console.log("You unfortunately tied somehow because the developer is too lazy to take this into account.");
-    }
-    else {
-        console.log("Too bad! You lost Rock, Paper, Scissors!");
-    }
-
 }
 
-playGame();
+// for (let i = 0; i < 5; i++) {
+//     let humanSelection = getHumanChoice();
+//     let computerSelection = getComputerChoice();
+
+//     playRound(humanSelection, computerSelection);
+// }
+
+// if (humanScore > computerScore) {
+//     console.log("Congratulations, you won Rock, Paper, Scissors!");
+// }
+// else if (humanScore === computerScore) {
+//     console.log("You unfortunately tied somehow because the developer is too lazy to take this into account.");
+// }
+// else {
+//     console.log("Too bad! You lost Rock, Paper, Scissors!");
+// }
+
+//}
+
+//playGame();
