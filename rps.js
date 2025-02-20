@@ -27,22 +27,6 @@ function getComputerChoice() {
     }
 }
 
-/*
-*   getHumanChoice will prompt the human player for their choice and will return it if it's valid
-*   Inputs: None
-*   Output: Human's choice of rock, paper, or scissors
-*/
-// function getHumanChoice() {
-//     let choice = "";
-//     do {
-//         choice = prompt("Rock, paper, or scissors").toLowerCase();
-//         if (choice != "rock" && choice != "paper" && choice != "scissors") {
-//             alert("Please enter a valid response");
-//         }
-//     } while (choice != "rock" && choice != "paper" && choice != "scissors");
-//     return choice;
-// }
-
 const gameButtons = document.querySelectorAll(".gameButton");
 
 gameButtons.forEach((gameButton) => {
@@ -51,10 +35,7 @@ gameButtons.forEach((gameButton) => {
     });
 });
 
-// Main function, essentially; will simulate 5 rounds of Rock, Paper, Scissors
-//function playGame() {
-
-
+const resultArea = document.querySelector("#results");
 
 /*
 *   playRound simulates a single round of rock, paper, scissors, incrementing the score as proper
@@ -62,19 +43,21 @@ gameButtons.forEach((gameButton) => {
 *   Output: None
 */
 function playRound(humanChoice, computerChoice) {
+    const newResult = document.createElement("p");
     if (humanChoice === computerChoice) { // tie
-        console.log("You tied!")
+        newResult.textContent = "You tied!";
     }
     else if ((humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")) { // human win
         humanScore++;
-        console.log("You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + ".");
+        newResult.textContent = "You win! " + humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1) + " beats " + computerChoice + ".";
     }
     else { // computer win
         computerScore++;
-        console.log("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".");
+        newResult.textContent = "You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".";
     }
+    resultArea.appendChild(newResult);
     updateScoreDisplay();
 }
 
@@ -86,24 +69,4 @@ function updateScoreDisplay() {
     cScoreDisplay.textContent = `Computer: ${computerScore}`;
 }
 
-// for (let i = 0; i < 5; i++) {
-//     let humanSelection = getHumanChoice();
-//     let computerSelection = getComputerChoice();
-
-//     playRound(humanSelection, computerSelection);
-// }
-
-// if (humanScore > computerScore) {
-//     console.log("Congratulations, you won Rock, Paper, Scissors!");
-// }
-// else if (humanScore === computerScore) {
-//     console.log("You unfortunately tied somehow because the developer is too lazy to take this into account.");
-// }
-// else {
-//     console.log("Too bad! You lost Rock, Paper, Scissors!");
-// }
-
-//}
-
-//playGame();
 updateScoreDisplay();
