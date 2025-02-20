@@ -75,6 +75,15 @@ function playRound(humanChoice, computerChoice) {
         computerScore++;
         console.log("You lose! " + computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1) + " beats " + humanChoice + ".");
     }
+    updateScoreDisplay();
+}
+
+const hScoreDisplay = document.querySelector("#hScore");
+const cScoreDisplay = document.querySelector("#cScore");
+
+function updateScoreDisplay() {
+    hScoreDisplay.textContent = `Human: ${humanScore}`;
+    cScoreDisplay.textContent = `Computer: ${computerScore}`;
 }
 
 // for (let i = 0; i < 5; i++) {
@@ -97,3 +106,4 @@ function playRound(humanChoice, computerChoice) {
 //}
 
 //playGame();
+updateScoreDisplay();
